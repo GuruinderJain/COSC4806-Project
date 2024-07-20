@@ -1,8 +1,10 @@
 <?php
 require_once 'models/OMDBModel.php';
+require_once 'models/ReviewModel.php';
 
 class SearchController {
     private $model;
+    private $reviewModel;
 
     public function __construct() {
         session_start();
@@ -13,6 +15,7 @@ class SearchController {
         }
 
         $this->model = new OMDBModel();
+        $this->reviewModel = new ReviewModel();
     }
 
     public function search() {
@@ -23,9 +26,24 @@ class SearchController {
         } elseif (isset($_GET['id'])) {
             $id = $_GET['id'];
             $movie = $this->model->getMovieDetails($id);
+            $reviews = $this->reviewModel->getReviewsByMovieId($id);
             require 'views/movie.php';
         } else {
             require 'views/search.php';
+        }
+    }
+    public function addReview() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_SESSION['user_id'];
+            $movieId = $_POST['movieId'];
+            $review = $_POST['review'];
+            $rating = $_POST['rating'];
+
+            if ($this->reviewModel->addReview($userId, $movieId, $review, $rating)) {
+                header('Location: index.php?id=' . $movieId);
+            } else {
+                echo "Failed to add review.";
+            }
         }
     }
 }

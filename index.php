@@ -17,6 +17,10 @@ switch ($action) {
         $controller = new UserController();
         $controller->logout();
         break;
+    case 'addReview':
+        $controller = new SearchController();
+        $controller->addReview();
+        break;
     case 'search':
     default:
         $controller = new SearchController();
