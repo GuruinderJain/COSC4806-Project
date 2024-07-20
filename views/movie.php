@@ -44,6 +44,20 @@
         <br>
         <button type="submit">Submit Review</button>
     </form>
+
+
+    <h2>AI Review</h2>
+    <form action="index.php?action=search&id=<?php echo htmlspecialchars($movie['imdbID']); ?>" method="post">
+        <input type="hidden" name="getAIReview" value="true">
+        <input type="hidden" name="movieTitle" value="<?php echo htmlspecialchars($movie['Title']); ?>">
+        <button type="submit">Get AI Review</button>
+    </form>
+    <?php if (isset($aiReview)): ?>
+        <p id="ai-review"><?php echo htmlspecialchars($aiReview); ?></p>
+    <?php endif; ?>
+
+
+    
     <a href="index.php">Back to search</a>
 </body>
 </html>

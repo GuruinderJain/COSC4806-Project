@@ -27,6 +27,7 @@ class SearchController {
             $id = $_GET['id'];
             $movie = $this->model->getMovieDetails($id);
             $reviews = $this->reviewModel->getReviewsByMovieId($id);
+            $aiReview = isset($_POST['getAIReview']) ? $this->reviewModel->getAIReview($movie['Title']) : null;
             require 'views/movie.php';
         } else {
             require 'views/search.php';
@@ -44,6 +45,14 @@ class SearchController {
             } else {
                 echo "Failed to add review.";
             }
+        }
+    }
+    public function getAIReview() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $movieTitle = $_POST['movieTitle'];
+            $aiReview = $this->reviewModel->getAIReview($movieTitle);
+            echo json_encode(['review' => $aiReview]);
+            exit;
         }
     }
 }
