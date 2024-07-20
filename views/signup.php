@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Sign up</title>
+      <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Register</h1>

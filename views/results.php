@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Search Results</title>
+      <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Search Results</h1>

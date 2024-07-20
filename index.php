@@ -21,10 +21,6 @@ switch ($action) {
         $controller = new SearchController();
         $controller->addReview();
         break;
-    // case 'getAIReview':
-    //     $controller = new SearchController();
-    //     $controller->getAIReview();
-    //     break;
     case 'search':
     default:
         $controller = new SearchController();

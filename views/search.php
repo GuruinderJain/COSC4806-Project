@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Movie Search</title>
+      <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Search for a Movie</h1>
