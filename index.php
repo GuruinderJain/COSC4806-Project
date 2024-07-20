@@ -1,6 +1,26 @@
 <?php
+require 'controllers/UserController.php';
 require 'controllers/SearchController.php';
-require 'config/database.php';
-$controller = new SearchController();
-$controller->search();
+
+$action = isset($_GET['action']) ? $_GET['action'] : 'search';
+
+switch ($action) {
+    case 'signup':
+        $controller = new UserController();
+        $controller->signup();
+        break;
+    case 'login':
+        $controller = new UserController();
+        $controller->login();
+        break;
+    case 'logout':
+        $controller = new UserController();
+        $controller->logout();
+        break;
+    case 'search':
+    default:
+        $controller = new SearchController();
+        $controller->search();
+        break;
+}
 ?>

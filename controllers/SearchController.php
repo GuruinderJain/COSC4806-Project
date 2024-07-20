@@ -5,6 +5,13 @@ class SearchController {
     private $model;
 
     public function __construct() {
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php?action=login');
+            exit();
+        }
+
         $this->model = new OMDBModel();
     }
 
